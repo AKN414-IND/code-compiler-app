@@ -114,6 +114,12 @@ body, html {
   overflow-y: visible;
   overflow-x: visible;
 }
+.same-line{
+  display: flex; 
+  flex-direction: row;
+  gap: 10px;
+  
+}
 
 .Editor-code {
   height: 600px;

@@ -82,6 +82,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+      
         <div className="Language-select-container">
           <select
             id="language-select"
@@ -95,12 +96,12 @@ function App() {
             <option value="java">Java</option>
             <option value="javascript">JavaScript</option>
           </select>
-
-          <button className="Download-button" onClick={handleDownload}>
-            <FiDownload /> Download Code
+          <div className="same-line">
+            <button className="Download-button" onClick={handleDownload}>
+            <FiDownload /> Download
           </button>
           <button className="Run-button" onClick={handleSubmit} disabled={buttonClicked}>
-            {buttonClicked ? "Running..." : <BsPlayFill />} Run Code
+            {buttonClicked ? "Running..." : <BsPlayFill />} Run
           </button>
           <input
             type="file"
@@ -110,8 +111,9 @@ function App() {
             accept=".txt,.js,.py,.java,.cpp,.c"
           />
           <label htmlFor="file-import" className="Import-button">
-            <FiUploadCloud /> Import Code
-          </label>
+            <FiUploadCloud /> Import
+          </label></div>
+          
         </div>
       </header>
       <div className="App-body">

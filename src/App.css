@@ -154,18 +154,70 @@ p {
   font-size: 1rem;
 }
 
-/* Responsive Adjustments */
+/* mobile view  */
+
 @media (max-width: 768px) {
   .App-header, .App-body, .Language-select-container {
     flex-direction: column;
+    padding: 10px; 
+  }
+
+  
+
+  .Language-select-container {
+    
+    gap: 15px; 
+  }
+  .Language-select{
+    width: 40vh;
+    
+  }
+  .same-line{
+    display: flex; 
+    flex-direction: row;
+    gap: 10px;
+    
+  }
+
+  .Download-button{
+    width: 15vh;
+  }
+   .Import-button {
+    width: 10vh;
   }
 
   .left-column, .right-column {
     width: 100%;
+    flex-direction: column;
+    align-items: stretch; 
   }
 
-  .Statistics-area {
-    flex-direction: column;
-    align-items: center;
+  .Editor, .Output-area {
+    margin: 0; 
+    width: calc(100% ); 
+    height: auto; 
+    min-height: 200px; 
+    box-shadow: none; 
+  }
+
+  .Editor-code, .Editor-input, .Output-area {
+    overflow-y: auto;
+  }
+
+  
+
+  .Stat-left, .Stat-right {
+    width: 100%;
+    text-align: center;
+  }
+
+  .Output-area {
+    min-height: 150px;
+    height: auto; 
+  }
+  .App-header {
+    display: flex;
+    flex-direction: row; 
+    box-shadow: none;
   }
 }

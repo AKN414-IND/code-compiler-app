@@ -73,7 +73,7 @@ function App() {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        setInputText(e.target.result); // Updates inputText state with file contents
+        setInputText(e.target.result); 
       };
       reader.readAsText(file);
     }
@@ -82,7 +82,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1 className="App-title">Mega Coder 3000</h1>
         <div className="Language-select-container">
           <select
             id="language-select"
@@ -110,9 +109,9 @@ function App() {
             id="file-import"
             accept=".txt,.js,.py,.java,.cpp,.c"
           />
-          <button htmlFor="file-import" className="Import-button">
+          <label htmlFor="file-import" className="Import-button">
             <FiUploadCloud /> Import Code
-          </button>
+          </label>
         </div>
       </header>
       <div className="App-body">

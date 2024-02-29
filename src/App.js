@@ -15,7 +15,7 @@ function App() {
   const [inputText, setInputText] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [output, setOutput] = useState("");
-  const [language, setLanguage] = useState("plaintext");
+  const [language, setLanguage] = useState("c"); 
   const [cpuTime, setCpuTime] = useState("0ms");
   const [memory, setMemory] = useState("0KB");
   const [buttonClicked, setButtonClicked] = useState(false);
@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     const guessLanguage = (code) => {
       if (/class\s+\w+\s*\{/.test(code)) return "java";
-      if (/def\s+\w+\s*\(/.test(code)) return "python";
+      if (/def\s+\w+\s*\(/.test(code)) return "python3";
       if (/function\s+\w+\s*\(/.test(code)) return "javascript";
       if (/int main\s*\(/.test(code)) return "c";
       else if (/#include/.test(code)) return "cpp";
@@ -36,14 +36,14 @@ function App() {
     e.preventDefault();
     const options = {
       method: "POST",
-      url: "https://online-code-App.p.rapidapi.com/v1/",
+      url: "https://online-code-compiler.p.rapidapi.com/v1/",
       headers: {
-        "content-type": "Application/json",
+        "content-type": "application/json",
         "X-RapidAPI-Key": process.env.REACT_APP_RAPIDAPI_KEY,
-        "X-RapidAPI-Host": "online-code-App.p.rapidapi.com",
+        "X-RapidAPI-Host": "online-code-compiler.p.rapidapi.com",
       },
       data: {
-        language: language,
+        language: language === 'python' ? 'python3' : language,
         version: "latest",
         code: inputText,
         input: inputValue,
@@ -61,11 +61,12 @@ function App() {
       console.error(error);
       setOutput("An error occurred while compiling the code.");
     }
+    
   };
 
   const getFileExtension = (language) => {
     switch (language) {
-      case "python": return "py";
+      case "python3": return "py";
       case "c": return "c";
       case "cpp": return "cpp";
       case "java": return "java";
@@ -97,7 +98,7 @@ function App() {
 
   const mapFileExtensionToLanguage = (extension) => {
     const extensionToLanguageMap = {
-      py: "python",
+      py: "python3",
       c: "c",
       cpp: "cpp",
       java: "java",
@@ -107,7 +108,14 @@ function App() {
   };
 
   const getMonacoLanguageId = (language) => {
-    return language;
+    const languageToMonacoMap = {
+      python3: "python3",
+      c: "c",
+      cpp: "cpp",
+      java: "java",
+      javascript: "javascript",
+    };
+    return languageToMonacoMap[language] || "plaintext";
   };
 
   return (
@@ -115,8 +123,9 @@ function App() {
       <header className="App-header">
         <div className="Language-select-container">
           <select id="language-select" value={language} onChange={(e) => setLanguage(e.target.value)} className="Language-select">
-            <option value="python">Python</option>
-            <option value="c">C</option>
+          <option value="c">C</option>
+            <option value="python3">Python3</option>
+            
             <option value="cpp">C++</option>
             <option value="java">Java</option>
             <option value="javascript">JavaScript</option>

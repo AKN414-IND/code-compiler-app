@@ -19,8 +19,7 @@ function App() {
   const [cpuTime, setCpuTime] = useState("0ms");
   const [memory, setMemory] = useState("0KB");
   const [buttonClicked, setButtonClicked] = useState(false);
-  
-  
+
   useEffect(() => {
     const guessLanguage = (code) => {
       if (/class\s+\w+\s*\{/.test(code)) return "java";
@@ -28,10 +27,8 @@ function App() {
       if (/function\s+\w+\s*\(/.test(code)) return "javascript";
       if (/int main\s*\(/.test(code)) return "c";
       else if (/#include/.test(code)) return "cpp";
-      
       return "plaintext";
     };
-
     setLanguage(guessLanguage(inputText));
   }, [inputText]);
 
@@ -42,7 +39,7 @@ function App() {
       url: "https://online-code-App.p.rapidapi.com/v1/",
       headers: {
         "content-type": "Application/json",
-        "X-RapidAPI-Key": process.env.REACT_App_RAPIDAPI_KEY,
+        "X-RapidAPI-Key": process.env.REACT_APP_RAPIDAPI_KEY,
         "X-RapidAPI-Host": "online-code-App.p.rapidapi.com",
       },
       data: {
@@ -68,7 +65,7 @@ function App() {
 
   const getFileExtension = (language) => {
     switch (language) {
-      case "python3": return "py";
+      case "python": return "py";
       case "c": return "c";
       case "cpp": return "cpp";
       case "java": return "java";
@@ -86,13 +83,10 @@ function App() {
   const handleFileImport = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Extract the file extension
       const fileExtension = file.name.split('.').pop();
-      // Map the file extension to a language
       const mappedLanguage = mapFileExtensionToLanguage(fileExtension);
-      // Update the language state
       setLanguage(mappedLanguage);
-  
+
       const reader = new FileReader();
       reader.onload = (e) => {
         setInputText(e.target.result);
@@ -100,7 +94,7 @@ function App() {
       reader.readAsText(file);
     }
   };
-  
+
   const mapFileExtensionToLanguage = (extension) => {
     const extensionToLanguageMap = {
       py: "python",
@@ -108,93 +102,51 @@ function App() {
       cpp: "cpp",
       java: "java",
       js: "javascript",
-      // Add more mappings as needed
     };
-  
     return extensionToLanguageMap[extension] || "plaintext";
   };
-  
 
   const getMonacoLanguageId = (language) => {
-    switch (language) {
-      case "python3": return "python";
-      case "c": return "c";
-      case "cpp": return "cpp";
-      case "java": return "java";
-      case "javascript": return "javascript";
-      default: return "plaintext";
-    }
+    return language;
   };
 
   return (
     <div className="App">
       <header className="App-header">
         <div className="Language-select-container">
-          <select
-            id="language-select"
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-            className="Language-select"
-          >
-            <option value="python3">Python 3</option>
+          <select id="language-select" value={language} onChange={(e) => setLanguage(e.target.value)} className="Language-select">
+            <option value="python">Python</option>
             <option value="c">C</option>
             <option value="cpp">C++</option>
             <option value="java">Java</option>
             <option value="javascript">JavaScript</option>
-            <option value="dart">Dart</option>
           </select>
           <div className="same-line">
-            <button className="Download-button" onClick={handleDownload}>
-              <FiDownload /> Download
-            </button>
-            <button className="Run-button" onClick={handleSubmit} disabled={buttonClicked}>
-              {buttonClicked ? "Running..." : "Run"} <BsPlayFill />
-            </button>
-            <input
-              type="file"
-              onChange={handleFileImport}
-              style={{ display: 'none' }}
-              id="file-import"
-              accept=".txt,.js,.py,.java,.cpp,.c"
-            />
-            <label htmlFor="file-import" className="Import-button">
-              <FiUploadCloud /> Import
-            </label>
+            <button className="Download-button" onClick={handleDownload}><FiDownload /> Download</button>
+            <button className="Run-button" onClick={handleSubmit} disabled={buttonClicked}>{buttonClicked ? "Running..." : "Run"} <BsPlayFill /></button>
+            <input type="file" onChange={handleFileImport} style={{ display: 'none' }} id="file-import" accept=".txt,.js,.py,.java,.cpp,.c" />
+            <label htmlFor="file-import" className="Import-button"><FiUploadCloud /> Import</label>
           </div>
         </div>
       </header>
       <div className="App-body">
         <div className="left-column">
-        <Editor
-  height="50vh"
-  language={getMonacoLanguageId(language)}
-  value={inputText}
-  onChange={setInputText}
-  theme="vs-dark"
-  options={{
-    selectOnLineNumbers: true,
-    roundedSelection: false,
-    readOnly: false,
-    cursorStyle: 'line',
-    automaticLayout: true,
-
-    highlightActiveIndentGuide: true,
-    autoClosingBrackets: 'always',
-    autoClosingQuotes: 'always',
-    autoIndent: 'full',
-    formatOnType: true,
-    formatOnPaste: true,
-  }}
-/>
+          <Editor height="50vh" language={getMonacoLanguageId(language)} value={inputText} onChange={setInputText} theme="vs-dark" options={{
+            selectOnLineNumbers: true,
+            roundedSelection: false,
+            readOnly: false,
+            cursorStyle: 'line',
+            automaticLayout: true,
+            highlightActiveIndentGuide: true,
+            autoClosingBrackets: 'always',
+            autoClosingQuotes: 'always',
+            autoIndent: 'full',
+            formatOnType: true,
+            formatOnPaste: true,
+          }} />
         </div>
         <div className="right-column">
-          <Editor2
-            className="Editor Editor-input"
-            value={inputValue}
-            onValueChange={setInputValue}
-            highlight={(code) => highlight(code, languages.js)}
-            padding={10}
-          />
+          <Editor2 className="Editor Editor-input" value={inputValue} onValueChange={setInputValue} highlight={(code) => highlight(code, languages.js)} padding={10} />
           <div className="Output-area">
             <pre className="Output-text">{output}</pre>
           </div>

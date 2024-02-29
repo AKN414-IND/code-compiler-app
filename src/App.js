@@ -19,8 +19,15 @@ function App() {
   const [cpuTime, setCpuTime] = useState("0ms");
   const [memory, setMemory] = useState("0KB");
   const [buttonClicked, setButtonClicked] = useState(false);
+  const [theme, setTheme] = useState('dark');
+
 
   useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+  
+  useEffect(() => {
+    
     const guessLanguage = (code) => {
       if (/class\s+\w+\s*\{/.test(code)) return "java";
       if (/def\s+\w+\s*\(/.test(code)) return "python3";
@@ -63,6 +70,10 @@ function App() {
     }
     
   };
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+  
 
   const getFileExtension = (language) => {
     switch (language) {
@@ -95,7 +106,8 @@ function App() {
       reader.readAsText(file);
     }
   };
-
+ 
+  
   const mapFileExtensionToLanguage = (extension) => {
     const extensionToLanguageMap = {
       py: "python3",
@@ -104,6 +116,7 @@ function App() {
       java: "java",
       js: "javascript",
     };
+    
     return extensionToLanguageMap[extension] || "plaintext";
   };
 
@@ -132,27 +145,40 @@ function App() {
           </select>
           <div className="same-line">
             <button className="Download-button" onClick={handleDownload}><FiDownload /> Download</button>
+            
+
             <button className="Run-button" onClick={handleSubmit} disabled={buttonClicked}>{buttonClicked ? "Running..." : "Run"} <BsPlayFill /></button>
             <input type="file" onChange={handleFileImport} style={{ display: 'none' }} id="file-import" accept=".txt,.js,.py,.java,.cpp,.c" />
             <label htmlFor="file-import" className="Import-button"><FiUploadCloud /> Import</label>
+            {/* <button onClick={toggleTheme} className="Theme-toggle">
+  {theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+</button> */}
           </div>
         </div>
       </header>
       <div className="App-body">
         <div className="left-column">
-          <Editor height="50vh" language={getMonacoLanguageId(language)} value={inputText} onChange={setInputText} theme="vs-dark" options={{
-            selectOnLineNumbers: true,
-            roundedSelection: false,
-            readOnly: false,
-            cursorStyle: 'line',
-            automaticLayout: true,
-            highlightActiveIndentGuide: true,
-            autoClosingBrackets: 'always',
-            autoClosingQuotes: 'always',
-            autoIndent: 'full',
-            formatOnType: true,
-            formatOnPaste: true,
-          }} />
+        <Editor
+  height="50vh"
+  language={getMonacoLanguageId(language)}
+  value={inputText}
+  onChange={setInputText}
+  theme={theme === 'dark' ? 'vs-dark' : 'light'} // Adjust based on theme state
+  options={{
+    selectOnLineNumbers: true,
+    roundedSelection: false,
+    readOnly: false,
+    cursorStyle: 'line',
+    automaticLayout: true,
+    highlightActiveIndentGuide: true,
+    autoClosingBrackets: 'always',
+    autoClosingQuotes: 'always',
+    autoIndent: 'full',
+    formatOnType: true,
+    formatOnPaste: true,
+  }}
+/>
+
         </div>
         <div className="right-column">
           <Editor2 className="Editor Editor-input" value={inputValue} onValueChange={setInputValue} highlight={(code) => highlight(code, languages.js)} padding={10} />

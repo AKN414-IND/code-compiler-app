@@ -1,11 +1,13 @@
-
 :root {
-  --primary-color: #4caf50; /* Primary color */
-  --secondary-color: #3656f4; /* Secondary color */
-  --background-color: #1e1e1e; /* Dark background */
-  --text-color: #d4d4d4; /* Light text color for contrast */
-  --editor-background-color: #252526; /* Slightly lighter background for editor */
-  --editor-border-color: #3c3c3c; /* Border color for elements */
+  --font-family-code: 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+  --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --border-radius: 8px;
+  --primary-color: #4caf50;
+  --secondary-color: #3656f4;
+  --background-color: #1e1e1e;
+  --text-color: #d4d4d4;
+  --editor-background-color: #252526;
+  --editor-border-color: #3c3c3c;
 }
 
 body, html {
@@ -15,10 +17,8 @@ body, html {
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
-
 }
 
-/* App Layout */
 .App {
   display: flex;
   flex-direction: column;
@@ -59,6 +59,7 @@ body, html {
   outline: none;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
 .Import-button {
   background-color: var(--secondary-color);
 }
@@ -88,7 +89,6 @@ body, html {
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
-/* Editor and Output Styling */
 .App-body {
   display: flex;
   flex-grow: 1;
@@ -115,11 +115,11 @@ body, html {
   overflow-y: visible;
   overflow-x: visible;
 }
+
 .same-line{
   display: flex; 
   flex-direction: row;
   gap: 10px;
-  
 }
 
 .Editor-code {
@@ -161,29 +161,22 @@ p {
   font-size: 1rem;
 }
 
-/* mobile view  */
-
 @media (max-width: 768px) {
   .App-header, .App-body, .Language-select-container {
     flex-direction: column;
     padding: 10px; 
   }
 
-  
-
   .Language-select-container {
-    
     gap: 15px; 
   }
   .Language-select{
     width: 40vh;
-    
   }
   .same-line{
     display: flex; 
     flex-direction: row;
     gap: 10px;
-    
   }
 
   .Download-button{
@@ -210,8 +203,6 @@ p {
   .Editor-code, .Editor-input, .Output-area {
     overflow-y: auto;
   }
-
-  
 
   .Stat-left, .Stat-right {
     width: 100%;

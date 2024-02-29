@@ -1,34 +1,49 @@
-// App.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Editor from "react-simple-code-editor";
+import Editor from "@monaco-editor/react";
+import { saveAs } from 'file-saver';
+import { FiDownload, FiUploadCloud } from "react-icons/fi";
+import { BsPlayFill } from "react-icons/bs";
+import "./App.css";
+import Editor2 from "react-simple-code-editor";
 import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
-import "prismjs/themes/prism-okaidia.css"; // A nicer theme for the code editor
-import "./App.css"; // Make sure to update your CSS accordingly
-import { saveAs } from 'file-saver';
-import { FiDownload, FiUploadCloud } from "react-icons/fi"; // Icons for download and upload
-import { BsPlayFill } from "react-icons/bs"; // Icon for run
+import "prismjs/themes/prism-okaidia.css";
 
 function App() {
   const [inputText, setInputText] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [output, setOutput] = useState("");
-  const [language, setLanguage] = useState("python3");
+  const [language, setLanguage] = useState("plaintext");
   const [cpuTime, setCpuTime] = useState("0ms");
   const [memory, setMemory] = useState("0KB");
   const [buttonClicked, setButtonClicked] = useState(false);
+  
+  
+  useEffect(() => {
+    const guessLanguage = (code) => {
+      if (/class\s+\w+\s*\{/.test(code)) return "java";
+      if (/def\s+\w+\s*\(/.test(code)) return "python";
+      if (/function\s+\w+\s*\(/.test(code)) return "javascript";
+      if (/int main\s*\(/.test(code)) return "c";
+      else if (/#include/.test(code)) return "cpp";
+      
+      return "plaintext";
+    };
+
+    setLanguage(guessLanguage(inputText));
+  }, [inputText]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const options = {
       method: "POST",
-      url: "https://online-code-compiler.p.rapidapi.com/v1/",
+      url: "https://online-code-App.p.rapidapi.com/v1/",
       headers: {
-        "content-type": "application/json",
-        "X-RapidAPI-Key": process.env.REACT_APP_RAPIDAPI_KEY,
-        "X-RapidAPI-Host": "online-code-compiler.p.rapidapi.com",
+        "content-type": "Application/json",
+        "X-RapidAPI-Key": process.env.REACT_App_RAPIDAPI_KEY,
+        "X-RapidAPI-Host": "online-code-App.p.rapidapi.com",
       },
       data: {
         language: language,
@@ -71,18 +86,49 @@ function App() {
   const handleFileImport = (e) => {
     const file = e.target.files[0];
     if (file) {
+      // Extract the file extension
+      const fileExtension = file.name.split('.').pop();
+      // Map the file extension to a language
+      const mappedLanguage = mapFileExtensionToLanguage(fileExtension);
+      // Update the language state
+      setLanguage(mappedLanguage);
+  
       const reader = new FileReader();
       reader.onload = (e) => {
-        setInputText(e.target.result); 
+        setInputText(e.target.result);
       };
       reader.readAsText(file);
+    }
+  };
+  
+  const mapFileExtensionToLanguage = (extension) => {
+    const extensionToLanguageMap = {
+      py: "python",
+      c: "c",
+      cpp: "cpp",
+      java: "java",
+      js: "javascript",
+      // Add more mappings as needed
+    };
+  
+    return extensionToLanguageMap[extension] || "plaintext";
+  };
+  
+
+  const getMonacoLanguageId = (language) => {
+    switch (language) {
+      case "python3": return "python";
+      case "c": return "c";
+      case "cpp": return "cpp";
+      case "java": return "java";
+      case "javascript": return "javascript";
+      default: return "plaintext";
     }
   };
 
   return (
     <div className="App">
       <header className="App-header">
-      
         <div className="Language-select-container">
           <select
             id="language-select"
@@ -95,40 +141,54 @@ function App() {
             <option value="cpp">C++</option>
             <option value="java">Java</option>
             <option value="javascript">JavaScript</option>
+            <option value="dart">Dart</option>
           </select>
           <div className="same-line">
             <button className="Download-button" onClick={handleDownload}>
-            <FiDownload /> Download
-          </button>
-          <button className="Run-button" onClick={handleSubmit} disabled={buttonClicked}>
-            {buttonClicked ? "Running..." : <BsPlayFill />} Run
-          </button>
-          <input
-            type="file"
-            onChange={handleFileImport}
-            style={{ display: 'none' }}
-            id="file-import"
-            accept=".txt,.js,.py,.java,.cpp,.c"
-          />
-          <label htmlFor="file-import" className="Import-button">
-            <FiUploadCloud /> Import
-          </label></div>
-          
+              <FiDownload /> Download
+            </button>
+            <button className="Run-button" onClick={handleSubmit} disabled={buttonClicked}>
+              {buttonClicked ? "Running..." : "Run"} <BsPlayFill />
+            </button>
+            <input
+              type="file"
+              onChange={handleFileImport}
+              style={{ display: 'none' }}
+              id="file-import"
+              accept=".txt,.js,.py,.java,.cpp,.c"
+            />
+            <label htmlFor="file-import" className="Import-button">
+              <FiUploadCloud /> Import
+            </label>
+          </div>
         </div>
       </header>
       <div className="App-body">
         <div className="left-column">
-          <Editor
-            className="Editor Editor-code"
-            value={inputText}
-            onValueChange={setInputText}
-            highlight={(code) => highlight(code, languages.js)}
-            padding={10}
-          />
-          
+        <Editor
+  height="50vh"
+  language={getMonacoLanguageId(language)}
+  value={inputText}
+  onChange={setInputText}
+  theme="vs-dark"
+  options={{
+    selectOnLineNumbers: true,
+    roundedSelection: false,
+    readOnly: false,
+    cursorStyle: 'line',
+    automaticLayout: true,
+
+    highlightActiveIndentGuide: true,
+    autoClosingBrackets: 'always',
+    autoClosingQuotes: 'always',
+    autoIndent: 'full',
+    formatOnType: true,
+    formatOnPaste: true,
+  }}
+/>
         </div>
         <div className="right-column">
-        <Editor
+          <Editor2
             className="Editor Editor-input"
             value={inputValue}
             onValueChange={setInputValue}
@@ -139,7 +199,7 @@ function App() {
             <pre className="Output-text">{output}</pre>
           </div>
           <div className="Statistics-area">
-            <h2>Complexity</h2> 
+            <h2>Complexity</h2>
             <div className="Stat-left">
               <h3>Time</h3>
               <p>{cpuTime}</p>

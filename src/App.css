@@ -1,30 +1,28 @@
 :root {
-  /* Color scheme - using black, white, and a vibrant blue */
-  --primary-color: #007BFF; 
-  --secondary-color: #F5A623; 
-  --background-color: #FFFFFF; 
-  --text-color: #000000; 
-  --header-bg-color: #F0F0F0; 
-  --button-bg-color: #007BFF; 
-  --button-text-color: #FFFFFF; 
+  --primary-color: #2A9D8F; 
+  --secondary-color: #E9C46A; 
+  --background-color: #F4F4F4; 
+  --text-color: #264653; 
+  --header-bg-color: #A8DADC; 
+  --button-bg-color: #2A9D8F; 
+  --button-text-color: #F4F4F4; 
   --output-bg-color: #FFFFFF; 
-  --editor-bg-color: #F7F7F7; 
-  --dark-theme-background: #1E1E1E; 
-  --dark-theme-text: #CCCCCC;
+  --editor-bg-color: #FFFFFF; 
+  --dark-theme-background: #262626; 
+  --dark-theme-text: #F0F0F0;
   --border-color: #E0E0E0; 
-
-  /* Spacing */
+  --stat-box-background: #E9C46A; 
+  --icon-color: #F4A261; 
+  --stat-title-color: #264653; 
+  --stat-value-color: #2A9D8F;
   --spacing-small: 8px;
   --spacing-medium: 16px;
   --spacing-large: 32px;
-
-  /* Font sizes */
   --font-size-small: 14px;
   --font-size-medium: 16px;
   --font-size-large: 20px;
-
-  /* Border radius */
   --border-radius: 4px;
+  --monospace-font-family: 'Courier New', Courier, monospace;
 }
 
 body {
@@ -39,6 +37,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--spacing-medium);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .Language-select-container, .same-line {
@@ -49,16 +49,93 @@ body {
 
 .Language-select, .Download-button, .Run-button, .Import-button {
   padding: var(--spacing-small) var(--spacing-medium);
-  font-size: var(--font-size-small);
-  border: 1px solid var(--border-color);
+  font-size: var(--font-size-medium);
+  border: 2px solid transparent;
   border-radius: var(--border-radius);
   background-color: var(--button-bg-color);
   color: var(--button-text-color);
   cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-weight: 600;
+  margin-right: var(--spacing-small);
 }
 
-.Download-button, .Run-button, .Import-button {
-  border: none;
+.Download-button:last-child,
+.Run-button:last-child,
+.Import-button:last-child {
+  margin-right: 0;
+}
+
+.Language-select:hover,
+.Download-button:hover,
+.Run-button:hover,
+.Import-button:hover {
+  background-color: var(--button-bg-color);
+  border-color: var(--primary-color);
+  color: var(--background-color);
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.5);
+}
+
+.Download-button:active,
+.Run-button:active,
+.Import-button:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.Language-select {
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048"><path fill="%23007BFF" d="M2048 384v128H0V384h2048zm0 640V896H0v128h2048zm0 768v-128H0v128h2048z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-small) center;
+  background-size: 16px;
+  padding-right: var(--spacing-large);
+}
+
+.Download-button::before,
+.Run-button::before,
+.Import-button::before {
+  content: '';
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  top: -100%;
+  left: -100%;
+  z-index: 0;
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+.Download-button:hover::before,
+.Run-button:hover::before,
+.Import-button:hover::before {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+.Download-button::after,
+.Run-button::after,
+.Import-button::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.Download-button:hover::after,
+.Run-button:hover::after,
+.Import-button:hover::after {
+  transform: scaleX(1);
 }
 
 .App-body {
@@ -70,54 +147,93 @@ body {
 
 .left-column, .right-column {
   flex: 1;
-  min-width: 300px; 
+  min-width: 300px;
 }
 
-.Editor, .Output-area, .Statistics-area {
+.Editor, .Output-area {
   background-color: var(--output-bg-color);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   padding: var(--spacing-small);
-}
-.Output-area, .Editor{
   min-height: 500px;
 }
-.Output-area, .Statistics-area {
-  margin-top: var(--spacing-medium);
-  
+
+.Statistics-area {
+  background-color: var(--editor-bg-color);
+  color: var(--primary-color);
+  font-family: var(--monospace-font-family);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.Stat-left, .Stat-right {
-  display: inline-block;
-  width: 50%;
+.Stat-container {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-medium);
 }
 
+.Stat-box {
+  flex: 1;
+  padding: var(--spacing-small);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  text-align: center;
+  position: relative;
+}
+
+.Stat-title {
+  color: var(--stat-title-color);
+  margin: 0 0 var(--spacing-small) 0;
+}
+
+.Stat-value {
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  color: var(--stat-value-color);
+}
+
+.Stat-icon {
+  position: absolute;
+  top: var(--spacing-small);
+  right: var(--spacing-small);
+  font-size: var(--font-size-large);
+  color: var(--icon-color);
+}
 
 @media (max-width: 768px) {
-  .App-header {
-      flex-direction: column;
-      gap: var(--spacing-small);
+  .Stat-container {
+    flex-direction: column;
   }
-  .Output-area, .Editor{
+  .Download-button, .Run-button, .Import-button {
+    margin-top: 15px;
+  }
+  .Language-select {
+    margin-bottom: -15px;
+  }
+  .App-header {
+    flex-direction: column;
+    gap: var(--spacing-small);
+  }
+  .Output-area, .Editor {
     min-height: 50px;
   }
-}
-
-@media (prefers-color-scheme: dark) {
-  body.dark {
-      background-color: var(--dark-theme-background);
-      color: var(--dark-theme-text);
+  .Language-select-container, .same-line {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-medium);
   }
-
-  .Editor, .Output-area, .Statistics-area {
-      background-color: var(--dark-theme-background);
-      color: var(--dark-theme-text);
+  .Language-select, .Download-button, .Run-button, .Import-button {
+    width: 100%;
   }
 }
 
-@media (prefers-color-scheme: light) {
-  body.light {
-      background-color: var(--background-color);
-      color: var(--text-color);
+@media (min-width: 769px) and (max-width: 1024px) {
+  .Language-select-container, .same-line {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .Language-select, .Download-button, .Run-button, .Import-button {
+    flex-grow: 1;
+    margin: var(--spacing-small);
   }
 }

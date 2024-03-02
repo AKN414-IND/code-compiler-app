@@ -30,11 +30,10 @@ function App() {
     
     const guessLanguage = (code) => {
       if (/class\s+\w+\s*\{/.test(code)) return "java";
-      if (/def\s+\w+\s*\(/.test(code)) return "python3";
       if (/function\s+\w+\s*\(/.test(code)) return "javascript";
-      if (/int main\s*\(/.test(code)) return "c";
-      else if (/#include/.test(code)) return "cpp";
-      return "plaintext";
+      if (/#include <iostream>/.test(code)) return "cpp";
+      if (/int main\s*\(/.test(code)) return "c"; 
+      return "python3";
     };
     setLanguage(guessLanguage(inputText));
   }, [inputText]);
@@ -158,26 +157,28 @@ function App() {
       </header>
       <div className="App-body">
         <div className="left-column">
-        <Editor
-  height="50vh"
-  language={getMonacoLanguageId(language)}
-  value={inputText}
-  onChange={setInputText}
-  theme={theme === 'dark' ? 'vs-dark' : 'light'} // Adjust based on theme state
-  options={{
-    selectOnLineNumbers: true,
-    roundedSelection: false,
-    readOnly: false,
-    cursorStyle: 'line',
-    automaticLayout: true,
-    highlightActiveIndentGuide: true,
-    autoClosingBrackets: 'always',
-    autoClosingQuotes: 'always',
-    autoIndent: 'full',
-    formatOnType: true,
-    formatOnPaste: true,
-  }}
-/>
+        <div className="editor-container">
+  <Editor
+    height="87vh"
+    language={getMonacoLanguageId(language)}
+    value={inputText}
+    onChange={setInputText}
+    theme={theme === 'dark' ? 'vs-dark' : 'light'}
+    options={{
+      selectOnLineNumbers: true,
+      roundedSelection: false,
+      readOnly: false,
+      cursorStyle: 'line',
+      automaticLayout: true,
+      highlightActiveIndentGuide: true,
+      autoClosingBrackets: 'always',
+      autoClosingQuotes: 'always',
+      autoIndent: 'full',
+      formatOnType: true,
+      formatOnPaste: true,
+    }}
+  />
+</div>
 
         </div>
         <div className="right-column">

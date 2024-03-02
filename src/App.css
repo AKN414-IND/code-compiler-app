@@ -1,221 +1,123 @@
 :root {
-  --font-family-code: 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
-  --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --border-radius: 8px;
-  --primary-color: #4caf50;
-  --secondary-color: #3656f4;
-  --background-color: #1e1e1e;
-  --text-color: #d4d4d4;
-  --editor-background-color: #252526;
-  --editor-border-color: #3c3c3c;
+  /* Color scheme - using black, white, and a vibrant blue */
+  --primary-color: #007BFF; 
+  --secondary-color: #F5A623; 
+  --background-color: #FFFFFF; 
+  --text-color: #000000; 
+  --header-bg-color: #F0F0F0; 
+  --button-bg-color: #007BFF; 
+  --button-text-color: #FFFFFF; 
+  --output-bg-color: #FFFFFF; 
+  --editor-bg-color: #F7F7F7; 
+  --dark-theme-background: #1E1E1E; 
+  --dark-theme-text: #CCCCCC;
+  --border-color: #E0E0E0; 
+
+  /* Spacing */
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 32px;
+
+  /* Font sizes */
+  --font-size-small: 14px;
+  --font-size-medium: 16px;
+  --font-size-large: 20px;
+
+  /* Border radius */
+  --border-radius: 4px;
 }
 
-body, html {
+body {
   margin: 0;
-  padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
-  line-height: 1.6;
-}
-
-.App {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  max-width: 1200px;
-  min-width: none;
 }
 
 .App-header {
-  color: #ffffff;
-  padding: 20px 50px;
-  text-align: left;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.App-title {
-  margin: 0;
-  font-weight: 400;
-}
-
-.Language-select-container {
+  padding: var(--spacing-medium);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 15px;
-  margin-top: 20px;
+}
+
+.Language-select-container, .same-line {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-small);
 }
 
 .Language-select, .Download-button, .Run-button, .Import-button {
-  background-color: var(--primary-color);
-  color: #fff; 
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: var(--spacing-small) var(--spacing-medium);
+  font-size: var(--font-size-small);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  outline: none;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.Import-button {
-  background-color: var(--secondary-color);
 }
 
 .Download-button, .Run-button, .Import-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  color: #000000;
-}
-
-.Download-button {
-  background-color: #4caf50;
-}
-
-.Run-button {
-  background-color: #2196f3;
-}
-
-.Import-button {
-  background-color: #3656f4;
-}
-
-.Download-button:hover, .Run-button:hover, .Import-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  border: none;
 }
 
 .App-body {
   display: flex;
-  flex-grow: 1;
-  padding: 20px;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: var(--spacing-medium);
+  padding: var(--spacing-medium);
 }
 
 .left-column, .right-column {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  min-width: 300px; 
 }
 
-.Editor, .Output-area {
-  background-color: var(--editor-background-color);
-  border: 1px solid var(--editor-border-color);
-  border-radius: 5px;
-  padding: 10px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+.Editor, .Output-area, .Statistics-area {
+  background-color: var(--output-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-small);
 }
-
-.Editor-code, .Editor-input, .Output-area {
-  overflow-y: visible;
-  overflow-x: visible;
+.Output-area, .Editor{
+  min-height: 500px;
 }
-
-.same-line{
-  display: flex; 
-  flex-direction: row;
-  gap: 10px;
-}
-
-.Editor-code {
-  height: 600px;
-}
-
-.Editor-input {
-height: 220px;
-}
-
-.Output-area {
-height: 220px;
-}
-
-.Statistics-area {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: var(--editor-background-color);
-  border-radius: 5px;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+.Output-area, .Statistics-area {
+  margin-top: var(--spacing-medium);
+  
 }
 
 .Stat-left, .Stat-right {
-  text-align: left;
+  display: inline-block;
+  width: 50%;
 }
 
-h2 {
-  color: #1976d2;
-  font-size: 1.25rem;
-}
-
-h3 {
-  margin-top: 0;
-}
-
-p {
-  margin: 5px 0 0;
-  font-size: 1rem;
-}
 
 @media (max-width: 768px) {
-  .App-header, .App-body, .Language-select-container {
-    flex-direction: column;
-    padding: 10px; 
-  }
-
-  .Language-select-container {
-    gap: 15px; 
-  }
-  .Language-select{
-    width: 40vh;
-  }
-  .same-line{
-    display: flex; 
-    flex-direction: row;
-    gap: 10px;
-  }
-
-  .Download-button{
-    width: 15vh;
-  }
-   .Import-button {
-    width: 10vh;
-  }
-
-  .left-column, .right-column {
-    width: 100%;
-    flex-direction: column;
-    align-items: stretch; 
-  }
-
-  .Editor, .Output-area {
-    margin: 0; 
-    width: calc(100% ); 
-    height: auto; 
-    min-height: 200px; 
-    box-shadow: none; 
-  }
-
-  .Editor-code, .Editor-input, .Output-area {
-    overflow-y: auto;
-  }
-
-  .Stat-left, .Stat-right {
-    width: 100%;
-    text-align: center;
-  }
-
-  .Output-area {
-    min-height: 150px;
-    height: auto; 
-  }
   .App-header {
-    display: flex;
-    flex-direction: row; 
-    box-shadow: none;
+      flex-direction: column;
+      gap: var(--spacing-small);
+  }
+  .Output-area, .Editor{
+    min-height: 50px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body.dark {
+      background-color: var(--dark-theme-background);
+      color: var(--dark-theme-text);
+  }
+
+  .Editor, .Output-area, .Statistics-area {
+      background-color: var(--dark-theme-background);
+      color: var(--dark-theme-text);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body.light {
+      background-color: var(--background-color);
+      color: var(--text-color);
   }
 }

@@ -15,21 +15,21 @@ const themeVariables = {
   light: {
     '--background-color': '#FFFFFF',
     '--text-color': '#000000',
-    '--button-bg-color': '#0077B6',
+    '--button-bg-color': '#7775D9',
     '--selector-bg-color': '#00B4D8',
     '--button-text-color': '#FFFFFF',
     '--border-color': '#0077B6',
-    '--output-bg-color': '#fffff'
+    '--output-bg-color': '#262626'
     
   },
   dark: {
-    '--background-color': '#000000',
+    '--background-color': '#262626',
     '--text-color': '#FFFFFF',
-    '--button-bg-color': '#3F72AF',
+    '--button-bg-color': '#7775D9',
     '--selector-bg-color': '#00B4D8',
-    '--button-text-color': '#FFFFFF',
+    '--button-text-color': '#000000',
     '--border-color': '#3F72AF',
-    '--output-bg-color': '#43434391'
+    '--output-bg-color': '#262626'
   }
 };
 
@@ -183,14 +183,14 @@ function App() {
           </select>
         <button className="option-button" onClick={handleToggleTheme}>Toggle Theme</button>
         <button className="option-button" onClick={handleDownload}><FiDownload /> Download</button>
-        <button className="option-button" onClick={handleSubmit} disabled={isRunning}>{isRunning ? "Running..." : "Run"} <BsPlayFill /></button>
+        <button className="option-button" id="run" onClick={handleSubmit} disabled={isRunning}>{isRunning ? "Running..." : "Run"} <BsPlayFill /></button>
         <input type="file" ref={fileInputRef} onChange={handleFileImport} style={{ display: "none" }} accept=".txt,.js,.py,.java,.cpp,.c" />
         <button className="option-button" onClick={() => fileInputRef.current.click()}><FiUploadCloud /> Import</button>
       </header>
       <div className="App-body">
         <div className="left-column">
         <Editor
-              height="87vh"
+              height="95vh"
               language={getMonacoLanguageId(language)}
               value={inputText}
               onChange={setInputText}

@@ -1,12 +1,11 @@
+/* Base styles */
 :root {
-  --primary-color: #00B4D8;
+  --primary-color: #6361ed;
   --secondary-color: #90E0EF;
-  --background-color: #F1F5F9; 
-  --button-bg-color: #0077B6; 
-  --button-text-color: #FFFFFF;
-  
-  
-  --border-color: #00B4D8;
+  --background-color: #F1F5F9;
+  --button-bg-color: #7775D9;
+  --button-text-color: #000000;
+  --border-color: #7775D9;
   --spacing-small: 8px;
   --spacing-medium: 16px;
   --spacing-large: 32px;
@@ -17,7 +16,6 @@
   --monospace-font-family: 'Fira Code', 'Courier New', Courier, monospace;
 }
 
-
 body {
   margin: 0;
   padding: 0;
@@ -27,51 +25,83 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-
-
 .App-header {
-  display: grid;
-  gap: var(--spacing-medium);
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: var(--spacing-small);
   padding: var(--spacing-medium);
+  background-color: rgba(255, 255, 255, 0);
   color: var(--button-text-color);
 }
 
 .Language-select-container, .action-buttons {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--spacing-small);
 }
 
+
 .Language-select, .option-button {
+  width: 30%;
   padding: var(--spacing-small) var(--spacing-medium);
   font-size: var(--font-size-medium);
   background-color: var(--button-bg-color);
   color: var(--button-text-color);
-  border: 2px solid transparent; 
+  border: none;
   border-radius: var(--border-radius);
   cursor: pointer;
-  transition: all 0.3s ease; 
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
   display: inline-flex;
   align-items: center; 
   justify-content: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  text-align: center;
+  text-decoration: none; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  user-select: none; 
+  -webkit-user-select: none;
+  touch-action: manipulation; 
+}
+#run{
+  cursor: wait;
 }
 
-.Language-select:hover, .option-button:hover {
+.option-button:hover, .option-button:focus {
   background-color: var(--primary-color);
-  color: var(--text-color);
-  transform: scale(1.05); 
-  border-color: var(--secondary-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transform: translateY(-2px); 
 }
 
-.Run-button:disabled {
+.option-button:active {
+  background-color: var(--secondary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+  transform: translateY(0); 
+}
+
+.option-button:disabled {
   background-color: var(--button-bg-color);
   color: var(--button-text-color);
   opacity: 0.5;
   cursor: not-allowed;
+  box-shadow: none; 
+  transform: none; 
 }
 
+.button-small {
+  padding: var(--spacing-small);
+  font-size: var(--font-size-small);
+}
+
+.button-large {
+  padding: var(--spacing-large);
+  font-size: var(--font-size-large);
+}
+
+.Run-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 .App-body {
   display: flex;
@@ -81,162 +111,89 @@ body {
 }
 
 .left-column, .right-column {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
 }
 
 .Editor2, .Output-area {
-  background-color: var(--output-bg-color);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  padding: var(--spacing-small);
-  min-height: 510px;
 }
 
 .Statistics-area {
-  background-color: var(--stat-box-background);
-  color: var(--stat-value-color);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
   padding: var(--spacing-small);
-  border-radius: var(--border-radius);
-  margin-top: var(--spacing-medium);
 }
 
 .Stat-box {
   text-align: center;
-  padding: var(--spacing-small);
-}
-
-.Stat-title, .Stat-value {
-  margin: 0;
-}
-
-@media (min-width: 768px) {
-  .App-body {
-    flex-direction: row;
-  }
-  .App-header {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .left-column, .right-column {
-    flex: 1;
-    min-width: 0; /* Fix for flexbox overflow */
-  }
-
-  .Statistics-area {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .Stat-box {
-    flex: 1;
-  }
-  .Editor2, .Output-area {
-    background-color: var(--output-bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-small);
-    min-height: 200px;
-    margin-bottom: 10px;
-  }
 }
 
 @media (max-width: 767px) {
   .App-header {
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: 1fr;
-    
-  }
-  .Language-select{
-    width: 300%;
-    
-  }
-  .Language-select-container, .action-buttons {
     flex-direction: column;
   }
 
-  .Language-select, .option-butt, .Run-button, .Import-button {
-    width: 100%;
-    text-align: center;
-  }
-  .Editor2, .Output-area {
-    background-color: var(--output-bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-small);
-    min-height: 200px;
-    margin-bottom: 10px;
-  }
-}
-
-@media (max-width: 768px) {
-  .Stat-container {
-    flex-direction: column;
-  }
-  .option-butt, .Run-button, .Import-button {
-    margin-top: 15px;
-  }
-  .Language-select {
-    margin-bottom: -15px;
-  }
-  .App-header {
-    flex-direction: column;
-    gap: var(--spacing-small);
-  }
-  .Output-area, .Editor {
-    min-height: 50px;
-  }
-  .Language-select-container, .same-line {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--spacing-medium);
-  }
-  .Language-select, .option-butt, .Run-button, .Import-button {
+  .Language-select, .option-button, .Run-button, .Import-button {
     width: 100%;
   }
+
   .Editor2, .Output-area {
-    background-color: var(--output-bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-small);
     min-height: 200px;
-    margin-bottom: 10px;
   }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   .App-header {
-    grid-template-columns: repeat(3, 1fr);
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
-  .Language-select-container, .same-line {
-    flex-wrap: wrap;
-    justify-content: center;
+  .App-body {
+    flex-direction: row;
+    gap: var(--spacing-large);
   }
-  
-   .option-butt, .Run-button, .Import-button {
-    flex-grow: 1;
-    margin: var(--spacing-small);
+
+  .left-column, .right-column {
+    width: 50%;
   }
+
   .Editor2, .Output-area {
-    background-color: var(--output-bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-small);
-    min-height: 230px;
-    margin-bottom: 10px;
+    min-height: 400px;
   }
 }
+
 @media (min-width: 1025px) {
   .App-header {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    flex-direction: row;
+    justify-content: space-between;
   }
+
+  .App-body {
+    flex-direction: row;
+    gap: var(--spacing-large);
+  }
+
+  .left-column {
+    width: 70%;
+  }
+
+  .right-column {
+    width: 30%;
+  }
+
   .Editor2, .Output-area {
-    background-color: var(--output-bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-small);
-    min-height: 200px;
-    margin-bottom: 10px;
+    min-height: 600px;
+  }
+
+  .Statistics-area {
+    flex-direction: row;
+  }
+
+  .Stat-box {
+    width: 50%;
   }
 }

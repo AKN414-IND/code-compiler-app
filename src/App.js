@@ -44,6 +44,7 @@ function App() {
   const [isRunning, setIsRunning] = useState(false);
   const [theme, setTheme] = useState("dark");
   const fileInputRef = useRef(null);
+  const isMobile = window.innerWidth <= 600;
 
   
 
@@ -96,6 +97,10 @@ function App() {
       setCpuTime(`${response.data.cpuTime}ms`);
       setMemory(`${response.data.memory}KB`);
       setOutput(response.data.output);
+      if (window.innerWidth <= 600) {
+        const outputArea = document.querySelector('.Output-area');
+        outputArea.scrollIntoView({ behavior: 'smooth' });
+      }
     } catch (error) {
       setIsRunning(false);
       console.error(error);
@@ -190,25 +195,25 @@ function App() {
       <div className="App-body">
         <div className="left-column">
         <Editor
-              height="95vh"
-              language={getMonacoLanguageId(language)}
-              value={inputText}
-              onChange={setInputText}
-              theme={theme === "dark" ? "vs-dark" : "light"}
-              options={{
-                selectOnLineNumbers: true,
-                roundedSelection: false,
-                readOnly: false,
-                cursorStyle: "line",
-                automaticLayout: true,
-                highlightActiveIndentGuide: true,
-                autoClosingBrackets: "always",
-                autoClosingQuotes: "always",
-                autoIndent: "full",
-                formatOnType: true,
-                formatOnPaste: true,
-              }}
-            />
+  height={isMobile ? "50vh" : "95vh"} 
+  language={getMonacoLanguageId(language)}
+  value={inputText}
+  onChange={setInputText}
+  theme={theme === "dark" ? "vs-dark" : "light"}
+  options={{
+    selectOnLineNumbers: true,
+    roundedSelection: false,
+    readOnly: false,
+    cursorStyle: "line",
+    automaticLayout: true,
+    highlightActiveIndentGuide: true,
+    autoClosingBrackets: "always",
+    autoClosingQuotes: "always",
+    autoIndent: "full",
+    formatOnType: true,
+    formatOnPaste: true,
+  }}
+/>
         </div>
         <div className="right-column">
           <Editor2 className="Editor2"value={inputValue} onValueChange={setInputValue} highlight={(code) => highlight(code, languages.js)} padding={10} />

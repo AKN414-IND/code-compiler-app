@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# SimpleIDE - A Versatile Coding Compiler
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+SimpleIDE is a robust, user-friendly coding compiler designed and developed by a dedicated team of three third-year BTech students. This innovative platform supports multiple programming languages, providing a versatile environment for coding, compiling, and running code snippets directly from a user's device. With its intuitive interface and comprehensive features, SimpleIDE aims to enhance the coding experience for developers, students, and hobbyists alike.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Support for Multiple Programming Languages**: SimpleIDE seamlessly supports a variety of programming languages including C, C++, Python, Java, and JavaScript, making it a versatile tool for a wide range of coding projects.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Integrated Development Environment (IDE)**: The platform includes a fully integrated development environment with syntax highlighting, code completion, and error detection capabilities to streamline the coding process.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Online Compilation and Execution**: Users can compile and execute their code directly within the platform, receiving instant feedback on the output and performance metrics such as execution time and memory usage.
 
-### `npm test`
+- **Theme Customization**: SimpleIDE offers light and dark theme options, allowing users to customize the interface according to their preferences for an optimal coding experience.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Code Import/Export Functionality**: Users can easily import code files into the platform or export their code snippets for offline use, facilitating seamless integration with other projects and tools.
 
-### `npm run build`
+- **Responsive Design**: The platform is designed to be fully responsive, ensuring a smooth and consistent user experience across various devices and screen sizes.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies Used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React.js for the frontend user interface
+- Axios for HTTP requests
+- Monaco Editor as the core text editor for code input
+- Prism.js for syntax highlighting
+- Firebase for potential future features such as user authentication and code snippet storage
+- Various additional libraries and frameworks to enhance the functionality and user experience of the platform
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installation and Setup
 
-### `npm run eject`
+To get started with SimpleIDE, follow these steps:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Clone the repository to your local machine.
+2. Navigate to the project directory and run `npm install` to install all the required dependencies.
+3. Once the installation is complete, run `npm start` to launch the application. This will open SimpleIDE in your default web browser.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributors
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This project was brought to life by a talented team of third-year BTech students:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Arun K Nair
+- Andrea Sunny
+- Hridya R
 
-## Learn More
+Their collective effort and dedication have been instrumental in developing SimpleIDE into a practical and valuable tool for the coding community.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+SimpleIDE is an open-source project licensed under the MIT License. Feel free to fork the repository, contribute to the project, or use the software for your own purposes in accordance with the license.
 
-### Code Splitting
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+For inquiries, suggestions, or contributions, please contact one of the contributors via their GitHub profiles.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thank you for exploring SimpleIDE. Happy coding!

@@ -3,7 +3,7 @@ import axios from "axios";
 import Editor from "@monaco-editor/react";
 import { saveAs } from "file-saver";
 import { FiDownload, FiUploadCloud } from 'react-icons/fi';
-import { BsPlayFill } from "react-icons/bs";
+import { BsPlayFill, BsFillSunFill, BsFillMoonStarsFill } from "react-icons/bs";
 import "./App.css";
 import Editor2 from "react-simple-code-editor";
 import { highlight, languages } from "prismjs";
@@ -59,12 +59,23 @@ function App() {
 
   useEffect(() => {
     const guessLanguage = (code) => {
-      if (/class\s+\w+\s*\{/.test(code)) return "java";
-      if (/function\s+\w+\s*\(/.test(code)) return "javascript";
-      if (/#include <iostream>/.test(code)) return "cpp";
-      if (/int main\s*\(/.test(code)) return "c";
-      return "python3";
+      if (/#include <(iostream|vector|string|map|set|algorithm)>|using namespace std;|class\s+\w+/.test(code)) return "cpp";
+      
+      if (/^#include <(stdio.h|stdlib.h|string.h|math.h|ctype.h|limits.h|assert.h)>/.test(code) ||
+          /\bprintf\b|\bscanf\b|\bmalloc\b|\bfree\b/.test(code) && !/class\s+\w+|using namespace std;/.test(code)) return "c";
+
+      if (/class\s+\w+\s*[\{;].*public static void main\s*\(\s*String\s*\[\]\s+\w+\s*\)/s.test(code) || /^(package|import)\s+java\./m.test(code)) return "java";
+
+      if (/(function\s+\w+\s*\(|\w+\s*=\s*function\s*\(|\w+\s*=>|document\.getElementById|console\.log)/.test(code)) return "javascript";
+      
+
+      if (/import\s+(\w+)(\s+as\s+\w+)?|from\s+\w+\s+import\s+\w+|print\s*\(/.test(code)) return "python3";
+
+      return "undefined";
     };
+    
+    
+    
     setLanguage(guessLanguage(inputText));
   }, [inputText]);
 
@@ -186,7 +197,9 @@ function App() {
             <option value="java">Java</option>
             <option value="javascript">JavaScript</option>
           </select>
-        <button className="option-button" onClick={handleToggleTheme}>Toggle Theme</button>
+          <button className="option-button" onClick={handleToggleTheme}>
+          {theme === "dark" ? <BsFillSunFill /> : <BsFillMoonStarsFill />} Toggle Theme
+        </button>        
         <button className="option-button" onClick={handleDownload}><FiDownload /> Download</button>
         <button className="option-button" id="run" onClick={handleSubmit} disabled={isRunning}>{isRunning ? "Running..." : "Run"} <BsPlayFill /></button>
         <input type="file" ref={fileInputRef} onChange={handleFileImport} style={{ display: "none" }} accept=".txt,.js,.py,.java,.cpp,.c" />
@@ -216,7 +229,7 @@ function App() {
 />
         </div>
         <div className="right-column">
-          <Editor2 className="Editor2"value={inputValue} onValueChange={setInputValue} highlight={(code) => highlight(code, languages.js)} padding={10} />
+          <Editor2 className="Editor2"value={inputValue} onValueChange={setInputValue} highlight={(code) => highlight(code, languages.js)} padding={10} placeholder="Enter input here "/>
           <div className="Output-area"><pre>{output}</pre></div>
           <div className="Statistics-area">
           <div className="Stat-box">

@@ -4,7 +4,7 @@
   --secondary-color: #90E0EF;
   --background-color: #F1F5F9;
   --button-bg-color: #7775D9;
-  --button-text-color: #000000;
+  --button-text-color: #ffffff;
   --border-color: #7775D9;
   --spacing-small: 8px;
   --spacing-medium: 16px;
@@ -117,8 +117,11 @@ body {
 }
 
 .Editor2, .Output-area {
+  background-color: var(--background-color);
+  color: var(--text-color);
   border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+
+
 }
 
 .Statistics-area {
@@ -186,7 +189,7 @@ body {
   }
 
   .Editor2, .Output-area {
-    min-height: 600px;
+    min-height: 275px;
   }
 
   .Statistics-area {

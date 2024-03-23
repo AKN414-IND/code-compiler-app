@@ -59,18 +59,28 @@ function App() {
 
   useEffect(() => {
     const guessLanguage = (code) => {
-      if (/#include <(iostream|vector|string|map|set|algorithm)>|using namespace std;|class\s+\w+/.test(code)) return "cpp";
+      if (/#include <(iostream|vector|string|map|set|algorithm)>|using namespace std;|class\s+\w+/.test(code)) {
+        return "cpp";
+      }
       
-      if (/^#include <(stdio.h|stdlib.h|string.h|math.h|ctype.h|limits.h|assert.h)>/.test(code) ||
-          /\bprintf\b|\bscanf\b|\bmalloc\b|\bfree\b/.test(code) && !/class\s+\w+|using namespace std;/.test(code)) return "c";
+      if ((/^#include <(stdio.h|stdlib.h|string.h|math.h|ctype.h|limits.h|assert.h)>/.test(code) ||
+        /\b(printf|scanf|malloc|free)\b/.test(code)) && 
+        !(/class\s+\w+|using namespace std;/.test(code))) {
+      return "c";
+    }
 
-      if (/class\s+\w+\s*[\{;].*public static void main\s*\(\s*String\s*\[\]\s+\w+\s*\)/s.test(code) || /^(package|import)\s+java\./m.test(code)) return "java";
+    if (/class\s+\w+\s*[{;].*public static void main\s*\(\s*String\s*\[\]\s+\w+\s*\)/s.test(code) || /^(package|import)\s+java\./m.test(code)) {
+      return "java";
+    }
 
-      if (/(function\s+\w+\s*\(|\w+\s*=\s*function\s*\(|\w+\s*=>|document\.getElementById|console\.log)/.test(code)) return "javascript";
-      
 
-      if (/import\s+(\w+)(\s+as\s+\w+)?|from\s+\w+\s+import\s+\w+|print\s*\(/.test(code)) return "python3";
+    if (/(function\s+\w+\s*\(|\w+\s*=\s*function\s*\(|\w+\s*=>|document\.getElementById|console\.log)/.test(code)) {
+      return "javascript";
+    }
 
+    if (/import\s+(\w+)(\s+as\s+\w+)?|from\s+\w+\s+import\s+\w+|print\s*\(/.test(code)) {
+      return "python3";
+    }
       return "undefined";
     };
     

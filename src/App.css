@@ -1,11 +1,5 @@
-/* Base styles */
 :root {
-  --primary-color: #6361ed;
-  --secondary-color: #90E0EF;
-  --background-color: #F1F5F9;
-  --button-bg-color: #7775D9;
-  --button-text-color: #ffffff;
-  --border-color: #7775D9;
+
   --spacing-small: 8px;
   --spacing-medium: 16px;
   --spacing-large: 32px;

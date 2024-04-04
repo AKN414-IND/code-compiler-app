@@ -1,0 +1,135 @@
+/* Basic reset for padding and margin */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace;
+  background: #f7f7f7;
+}
+.main{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  
+}
+
+/* Full container for the IDE */
+.ide-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0%;
+}
+
+/* Toolbar styling */
+.toolbar {
+  background-color: #fff;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0px;
+}
+
+.toolbar button {
+  cursor: pointer;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  font-size: 0.85rem;
+  transition: background-color 0.3s;
+}
+
+.toolbar button:hover {
+  background-color: #ddd;
+}
+
+/* Main editing area styling */
+.editor-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+/* Tab header styling */
+.tab-header {
+  background-color: #1e1e1e;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.tab-title {
+  user-select: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tab-title:hover {
+  background-color: #333333;
+}
+
+.active-tab {
+  border-bottom: 2px solid #007acc;
+  background-color: #262626;
+}
+
+/* Editor and preview pane styling */
+.editor, .preview-container {
+  flex: 1;
+  background-color: #fff;
+  overflow: auto;
+}
+
+.editor {
+  background-color: #1e1e1e;
+  color: #dcdcdc;
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-right: 1px solid #ddd;
+}
+
+.preview-container {
+  position: relative;
+}
+
+.preview-iframe {
+  width: 50%;
+  height: 100%;
+  border: none;
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbar button {
+    margin-bottom: 0.5rem;
+  }
+
+  .editor-container {
+    flex-direction: row;
+  }
+
+  .tab-header {
+    flex-direction: column;
+  }
+
+  .editor, .preview-container {
+    flex: 1 1 50%;
+  }
+}

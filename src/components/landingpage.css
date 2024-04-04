@@ -1,0 +1,163 @@
+html, body, #root, .App {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  background: linear-gradient(to right, #6dd5ed, #2193b0); /* Cool gradient background */
+}
+
+.landing-header {
+  animation: fadeIn 1s ease-out both;
+}
+
+.landing-title {
+  font-size: 4rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  animation: fadeInDown 1s ease-out both;
+}
+
+.landing-subtitle {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  animation: fadeInUp 1s ease-out both;
+}
+
+.ide-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  padding: 0 20px;
+  animation: fadeIn 1.5s ease-out both;
+}
+
+.ide {
+  flex-grow: 1;
+  border: 1px solid #fff;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 0 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  animation: popIn 1.5s ease-out both;
+}
+
+.ide-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.ide:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.ide h2 {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.ide p {
+  color: #ddd;
+  margin-bottom: 1.5rem;
+}
+
+.ide-link {
+  display: inline-block;
+  background-color: #fff;
+  color: #2193b0;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: background-color 0.3s;
+}
+
+.ide-link:hover {
+  background-color: #abd9ee;
+}
+
+.landing-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -50px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ide-container {
+    flex-direction: column;
+  }
+  .ide {
+    width: 80%;
+    margin: 10px 0;
+  }
+  .landing-footer {
+    position: relative;
+  }
+}

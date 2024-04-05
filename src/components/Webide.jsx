@@ -7,6 +7,7 @@ const WebIde = () => {
   const [js, setJs] = useState('');
   const [srcDoc, setSrcDoc] = useState('');
   const [activeTab, setActiveTab] = useState('html');
+  const [theme, setTheme] = useState('dark'); // Add theme state
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -21,6 +22,41 @@ const WebIde = () => {
     }, 250);
     return () => clearTimeout(timeout);
   }, [html, css, js]);
+  useEffect(() => {
+    document.body.classList.toggle('light-theme', theme === 'light');
+  }, [theme]);
+  
+
+  useEffect(() => {
+    const themeVariables = {
+      
+      dark: {
+        '--background-color': '#262626',
+        '--text-color': '#FFFFFF',
+        '--button-bg-color': '#7775D9',
+        '--selector-bg-color': '#00B4D8',
+        '--button-text-color': '#000000',
+        '--border-color': '#3F72AF',
+        '--output-bg-color': '#FFFFFF' // Adjust for better contrast in dark mode
+      },light: {
+        '--background-color': '#FFFFFF',
+        '--text-color': '#000000',
+        '--button-bg-color': '#7775D9',
+        '--selector-bg-color': '#00B4D8',
+        '--button-text-color': '#FFFFFF',
+        '--border-color': '#0077B6',
+        '--output-bg-color': '#262626'
+      },
+    };
+    Object.keys(themeVariables[theme]).forEach(key => {
+      document.documentElement.style.setProperty(key, themeVariables[theme][key]);
+    });
+  }, [theme]);
+  
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
 
   const handleDownload = (filename, content) => {
     const element = document.createElement('a');
@@ -65,21 +101,29 @@ const WebIde = () => {
 
   return (
     <div className='ide-container'>
-      <div className='toolbar'>
+      <header>
+      <div className="ide-title">My WebIDE</div>
       <input
-          type='file'
-          id='fileInput'
-          style={{ display: 'none' }}
-          onChange={handleImport}
-          accept='.html,.css,.js'
-        />
-        <button onClick={() => document.getElementById('fileInput').click()}>
-          Import Files
-        </button>
+  type="file"
+  id="fileInput"
+  style={{ display: 'none' }}
+  onChange={handleImport} 
+  accept=".html,.css,.js"
+/>
+<button onClick={() => document.getElementById('fileInput').click()}>
+  <i className="fas fa-file-import"></i> Import Files
+</button>
 
-        <button onClick={downloadFiles}>Download Project</button>
-        <button onClick={openPreviewInNewTab}>Open Preview in New Tab</button>
-      </div>
+    <button onClick={downloadFiles}>
+        <i className="fas fa-download"></i> Download Project
+    </button>
+    <button onClick={openPreviewInNewTab}>
+        <i className="fas fa-external-link-alt"></i> Open Preview
+    </button>
+    <button onClick={toggleTheme}>
+        <i className={`fas ${theme === 'dark' ? 'fa-sun' : 'fa-moon'}`}></i> Toggle Theme
+    </button>
+      </header>
       <div className='main'>
       <div className='editor-container'>
         <div className="tab-header">

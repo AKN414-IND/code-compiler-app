@@ -1,135 +1,124 @@
-/* Basic reset for padding and margin */
-* {
-  box-sizing: border-box;
+:root {
+  /* Light theme variables */
+  --background-color-light: #FFFFFF;
+  --text-color-light: #000000;
+  --button-bg-color-light: #DDDDDD;
+  --button-bg-color-light: #7775D9;
+  --selector-bg-color-light: #7775D9;
+  --border-color-light: #CCCCCC;
+  --output-bg-color-light: #F5F5F5;
+
+  /* Dark theme variables */
+  --background-color-dark: #1E1E1E;
+  --text-color-dark: #CCCCCC;
+  --button-bg-color-dark: #7775D9;
+  --selector-bg-color-dark: #7775D9;
+  --button-text-color-dark: #FFFFFF;
+  --border-color-dark: #333333;
+  --output-bg-color-dark: #F5F5F5;
+}
+
+/* Apply default theme variables; adjust according to the initial state */
+body {
+  --background-color: var(--background-color-dark);
+  --text-color: var(--text-color-dark);
+  --button-bg-color: var(--button-bg-color-dark);
+  --selector-bg-color: var(--selector-bg-color-dark);
+  --button-text-color: var(--button-text-color-dark);
+  --border-color: var(--border-color-dark);
+  --output-bg-color: var(--output-bg-color-dark);
+  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
-html, body {
-  height: 100%;
-  font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace;
-  background: #f7f7f7;
-}
-.main{
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-  padding: 0px;
-  margin: 0px;
-  
-}
-
-/* Full container for the IDE */
 .ide-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  margin: 0%;
+  height: 100vh;
 }
 
-/* Toolbar styling */
-.toolbar {
-  background-color: #fff;
-  padding: 0.5rem;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 0px;
-}
-
-.toolbar button {
-  cursor: pointer;
-  background-color: #eee;
-  border: 1px solid #ccc;
-  padding: 0.5rem 1rem;
-  margin-right: 0.5rem;
-  font-size: 0.85rem;
-  transition: background-color 0.3s;
-}
-
-.toolbar button:hover {
-  background-color: #ddd;
-}
-
-/* Main editing area styling */
-.editor-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-}
-
-/* Tab header styling */
-.tab-header {
-  background-color: #1e1e1e;
-  color: white;
+header {
   display: flex;
   align-items: center;
-  padding: 0.5rem;
+  background-color: var(--button-bg-color);
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.tab-title {
-  user-select: none;
-  padding: 0.5rem 1rem;
+.ide-title {
+  flex-grow: 1;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+button {
+  background-color: var(--selector-bg-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 8px 16px;
+  margin: 0 5px;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.tab-title:hover {
-  background-color: #333333;
+button:hover {
+  filter: brightness(1.1);
 }
 
-.active-tab {
-  border-bottom: 2px solid #007acc;
-  background-color: #262626;
+.main {
+  display: flex;
+  flex-grow: 1;
 }
 
-/* Editor and preview pane styling */
-.editor, .preview-container {
+.editor-container, .preview-container {
   flex: 1;
-  background-color: #fff;
   overflow: auto;
 }
 
-.editor {
-  background-color: #1e1e1e;
-  color: #dcdcdc;
-  padding: 1rem;
-  font-size: 0.9rem;
-  border-right: 1px solid #ddd;
+.tab-header {
+  display: flex;
+  background-color: var(--background-color);
+  padding-bottom: 2px;
 }
 
-.preview-container {
-  position: relative;
+.tab-title {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.active-tab {
+  border-color: var(--selector-bg-color);
+  font-weight: bold;
+}
+
+.editor, .preview-iframe {
+  width: 100%;
+  height: calc(100% - 32px); /* Adjust based on tab height */
+  border: none;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 10px;
+  box-sizing: border-box;
+  resize: none;
 }
 
 .preview-iframe {
-  width: 50%;
-  height: 100%;
-  border: none;
+  background-color: var(--output-bg-color);
 }
 
-/* Responsiveness for smaller screens */
-@media (max-width: 768px) {
-  .toolbar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .toolbar button {
-    margin-bottom: 0.5rem;
-  }
-
-  .editor-container {
-    flex-direction: row;
-  }
-
-  .tab-header {
-    flex-direction: column;
-  }
-
-  .editor, .preview-container {
-    flex: 1 1 50%;
-  }
+/* Theme toggle functionality */
+.light-theme {
+  --background-color: var(--background-color-light);
+  --text-color: var(--text-color-light);
+  --button-bg-color: var(--button-bg-color-light);
+  --selector-bg-color: var(--selector-bg-color-light);
+  --button-text-color: var(--button-text-color-light);
+  --border-color: var(--border-color-light);
+  --output-bg-color: var(--output-bg-color-light);
 }

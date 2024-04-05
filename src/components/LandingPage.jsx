@@ -1,31 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './landingpage.css';
+import './landingpage.css'; // Ensure this path matches the location of your CSS file
 
 const LandingPage = () => {
   return (
     <div className="landing-container">
+      <nav className="landing-nav">
+        <div className="nav-brand">CodeCompiler</div>
+      </nav>
       <header className="landing-header">
         <h1 className="landing-title">Discover Your Coding Potential</h1>
-        <p className="landing-subtitle">Whether you're a beginner or an expert, our interactive coding environment is designed for all levels.</p>
+        <p className="landing-subtitle">Write, compile, and execute your code all in one place.</p>
+        
       </header>
-      <div className="ide-container">
-        <div className="ide ide-web" >
-          <div className="ide-content">
-            <h2>Web IDE</h2>
-            <p>Edit and run your HTML, CSS, and JavaScript code all in one place. Experience the ease of testing and debugging with live previews.</p>
-            <Link to="/webide" className="ide-link">Start Coding</Link>
-          </div>
+      <section className="features-container">
+        <div className="feature">
+          <h2>Web IDE</h2>
+          <p>Compile HTML, CSS, and JavaScript on the fly.</p>
+          <Link to="/webide" className="btn btn-secondary">Launch Web IDE</Link>
         </div>
-        <div className="ide ide-code" >
-          <div className="ide-content">
-            <h2>Code IDE</h2>
-            <p>Powerful code editor for C, C++, Java, Python, and more. Dive into development with advanced features and a vast language support.</p>
-            <Link to="/codeide" className="ide-link">Open Editor</Link>
-          </div>
+        <div className="feature">
+          <h2>Code Editor</h2>
+          <p>Supports multiple programming languages with syntax highlighting.</p>
+          <Link to="/codeide" className="btn btn-secondary">Open Code Editor</Link>
         </div>
-      </div>
-      
+      </section>
+      <footer className="landing-footer">
+      </footer>
     </div>
   );
 };

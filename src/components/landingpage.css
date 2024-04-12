@@ -41,6 +41,9 @@ body, html {
   background: linear-gradient(145deg, #7775D9, #8886E5);  
   color: #000000; 
   transition: background-color 0.3s;
+  display: grid ;
+  align-items: center;
+  justify-content: center;
 }
 
 .landing-title {
@@ -102,6 +105,7 @@ body, html {
   text-align: center;
   transition: background 0.2s ease-in-out, transform 0.2s ease;
   cursor: pointer;  
+  margin-top: 15px;
 }
 
 .btn:hover, .btn-secondary:hover {

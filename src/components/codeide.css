@@ -1,0 +1,165 @@
+:root {
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 32px;
+  --font-size-small: 14px;
+  --font-size-medium: 16px;
+  --font-size-large: 20px;
+  --border-radius: 8px;
+  --monospace-font-family: 'Fira Code', 'Courier New', Courier, monospace;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-small);
+  padding: var(--spacing-medium);
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--button-text-color);
+}
+
+.Language-select, .option-button {
+  width: 30%;
+  padding: var(--spacing-small) var(--spacing-medium);
+  font-size: var(--font-size-medium);
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.option-button:hover, .option-button:focus {
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.option-button:active {
+  background-color: var(--secondary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+}
+
+.option-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.App-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+  padding: var(--spacing-medium);
+}
+
+.left-column, .right-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+}
+
+.Editor2, .Output-area {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.Statistics-area {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+  padding: var(--spacing-small);
+}
+
+.Stat-box {
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .App-header {
+    flex-direction: column;
+  }
+
+  .Language-select, .option-button {
+    width: 100%;
+  }
+
+  .Editor2, .Output-area {
+    min-height: 200px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .App-header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .App-body {
+    flex-direction: row;
+    gap: var(--spacing-large);
+  }
+
+  .left-column, .right-column {
+    width: 50%;
+  }
+
+  .Editor2, .Output-area {
+    min-height: 400px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .App-header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .App-body {
+    flex-direction: row;
+    gap: var(--spacing-large);
+  }
+
+  .left-column {
+    width: 70%;
+  }
+
+  .right-column {
+    width: 30%;
+  }
+
+  .Editor2, .Output-area {
+    min-height: 275px;
+  }
+
+  .Statistics-area {
+    flex-direction: row;
+  }
+
+  .Stat-box {
+    width: 50%;
+  }
+}

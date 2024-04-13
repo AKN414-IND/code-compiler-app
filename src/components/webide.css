@@ -1,0 +1,107 @@
+:root {
+  --background-color: #000000;
+  --text-color: #FFFFFF;
+  --button-bg-color: #7775D9;
+  --selector-bg-color: #7775D9;
+  --button-text-color: #FFFFFF;
+  --border-color: #FFFFFF;
+  --output-bg-color: #FFFFFF;
+}
+
+body, html {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  height: 100%;
+  overflow: hidden;
+}
+
+.ide-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border: 1px solid var(--border-color);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--button-bg-color);
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tab-header {
+  display: flex;
+  margin-right: auto;
+}
+
+.tab-title {
+  padding: 10px 20px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.active-tab {
+  border-color: var(--selector-bg-color);
+}
+
+button {
+  background-color: var(--selector-bg-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 10px 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: darken(var(--selector-bg-color), 10%);
+}
+
+.main {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden; /* Prevent scrollbars from appearing */
+}
+
+.editor-container, .preview-container {
+  flex: 1;
+  overflow: auto;
+}
+
+.editor {
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: none;
+  padding: 20px;
+  box-sizing: border-box;
+  resize: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.preview-iframe {
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .preview-container {
+    display: none; 
+  }
+  .editor {
+    min-height: calc(100vh - 60px); 
+  }
+}

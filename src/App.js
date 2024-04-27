@@ -11,9 +11,7 @@ function App() {
     <Router>
       <div className="fullscreen-component">
           <Routes>
-            
             <Route path="/" element={<Loader><LandingPage /></Loader>} />
-            
             <Route path="/webide" element={<WebIde />} />
             <Route path="/codeide" element={<CodeIde />} />
           </Routes>
@@ -22,7 +20,4 @@ function App() {
     </Router>
   );
 }
-
-
-
 export default App;

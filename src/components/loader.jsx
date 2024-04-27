@@ -8,7 +8,7 @@ function CreditsLoader({ children }) {
 
   useEffect(() => {
     // Set the loader to stop after a set time
-    const timer = setTimeout(() => setLoading(false), 6000);
+    const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, [location]);
 
@@ -17,12 +17,8 @@ function CreditsLoader({ children }) {
       {loading ? (
         <div className="loader">
           <div className="loader-content">
-            <div className="title">Built by:</div>
-            <div className="code-line"><span className="text">Andrea Sunny,</span></div>
-            <div className="code-line"><span className="text">Arun K Nair,</span></div>
-            <div className="code-line"><span className="text">Hridya</span></div>
-            <div className="title">Guided by:</div>
-            <div className="code-line"><span className="text">Ms. Shobha ,</span></div>
+            <div className="title">Web-code Compiler</div>
+            
           </div>
         </div>
       ) : (

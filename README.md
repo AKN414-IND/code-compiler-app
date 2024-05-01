@@ -1,12 +1,6 @@
 # Web Code Compiler
 
-![Language](https://img.shields.io/badge/language-JavaScript-F7DF1E?style=flat&logo=javascript)
-
-![Framework](https://img.shields.io/badge/framework-React-61DAFB?style=flat&logo=react)
-
-![Code Style](https://img.shields.io/badge/code_style-eslint-4B32C3?style=flat&logo=eslint)
-
-![License](https://img.shields.io/badge/license-MIT-green)
+![Language](https://img.shields.io/badge/language-JavaScript-F7DF1E?style=flat&logo=javascript) ![Framework](https://img.shields.io/badge/framework-React-61DAFB?style=flat&logo=react) ![Code Style](https://img.shields.io/badge/code_style-eslint-4B32C3?style=flat&logo=eslint) ![License](https://img.shields.io/badge/license-MIT-green)
 
 **Web Code Compiler** is an intuitive, web-based integrated development environment (IDE) crafted meticulously by Arun, Andrea, and Hridya. This project, developed during their third year of B.Tech in Computer Science and Engineering, aims to simplify the process of coding, compiling, and executing code efficiently across various programming languages.
 

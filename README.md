@@ -1,44 +1,116 @@
-# 🌟 SimpleIDE - Elevate Your Coding Experience 🌟
+# Web Code Compiler
 
-## 🚀 Overview
+![Language](https://img.shields.io/badge/language-JavaScript-F7DF1E?style=flat&logo=javascript)
 
-Welcome to **SimpleIDE**, an innovative and unparalleled online coding platform, meticulously designed by the visionary team of Arun K Nair, Andrea Sunny, and Hridya R. This robust, user-friendly compiler transcends traditional coding environments by offering a seamless, comprehensive toolkit for coding, compiling, and executing snippets across multiple programming languages directly from your browser. Aimed at developers, students, and coding hobbyists, SimpleIDE combines functionality with simplicity to revolutionize your programming workflow.
+![Framework](https://img.shields.io/badge/framework-React-61DAFB?style=flat&logo=react)
 
-## ✨ Key Features
+![Code Style](https://img.shields.io/badge/code_style-eslint-4B32C3?style=flat&logo=eslint)
 
-- **Polyglot Programming**: Extensive support for C, C++, Python3, Java, and JavaScript, catering to a diverse range of projects and making SimpleIDE a versatile asset.
-- **Cutting-Edge IDE**: An integrated development environment with syntax highlighting, code completion, and error detection to streamline your coding process.
-- **Instant Feedback**: Real-time compilation and execution with instant feedback on output and performance metrics, including execution time and memory usage.
-- **Customizable Experience**: Light and dark theme options to personalize your coding environment for optimal comfort.
-- **Easy Code Management**: Seamless import/export functionality allows for effortless integration with other projects and tools.
-- **Universal Compatibility**: A responsive design ensures a smooth and consistent experience across various devices and screen sizes.
+![License](https://img.shields.io/badge/license-MIT-green)
 
-## 🛠 Technologies Behind The Magic
+**Web Code Compiler** is an intuitive, web-based integrated development environment (IDE) crafted meticulously by Arun, Andrea, and Hridya. This project, developed during their third year of B.Tech in Computer Science and Engineering, aims to simplify the process of coding, compiling, and executing code efficiently across various programming languages.
 
-- **React.js**: Powers our dynamic and responsive user interface, enhancing user experience.
-- **Axios**: Handle HTTP requests.
-- **@monaco-editor/react & react-simple-code-editor**: Provide an immersive coding experience with extensive language support.
-- **Prism.js**: Offers beautiful syntax highlighting, enhancing code readability and aesthetics.
-- **FileSaver.js & React Icons**: Facilitate direct code downloads from the browser and add a touch of visual flair to the UI.
 
-## 🌐 Getting Started
+## 🚀 Features
 
-To dive into SimpleIDE:
-1. **Clone the repository** to your local machine.
-2. **Navigate** to the project directory and **run `npm install`** to install dependencies.
-3. **Launch** the application with `npm start`. SimpleIDE will open in your default web browser, ready for action.
+Web Code Compiler leverages a suite of powerful tools and libraries to provide developers with the following features:
 
-## 👥 Meet the Team
+- **Multi-Language Support**: Seamlessly switch between HTML, CSS, JavaScript, C, C++, Python, and Java.
+- **Live Compilation**: Get real-time feedback and error detection as you type.
+- **Advanced Code Editor**: Integrates with Monaco Editor for cutting-edge syntactic features, such as auto-completion and code folding.
+- **Execution Insights**: Instantly view execution times and memory statistics.
+- **Responsive UI**: Adapts beautifully to both desktop and mobile screens.
+- **File Operations**: Easily import and export your projects with comprehensive file management tools.
+- **Custom Themes**: Choose between light and dark modes to customize your coding experience.
+- **Interactive Previews**: Immediate rendering of HTML/CSS along with JavaScript.
 
-This project is the brainchild of three dedicated third-year BTech students—Arun K Nair, Andrea Sunny, and Hridya R. Their collective effort and innovative spirit have been pivotal in developing SimpleIDE into a practical and valuable tool for the coding community.
+## 📦 Installation
 
-## 📜 License
+Jump-start your development with **Web Code Compiler** by following these steps to get it up and running on your local machine:
 
-SimpleIDE is proudly open-source, licensed under the MIT License. We encourage you to fork the repository, contribute, or use the software in your projects in alignment with the license.
+### 🚀 Quick Start
 
-## 💡 Connect & Contribute
+1. **Clone the repository**
 
-For inquiries, suggestions, or contributions, feel free to reach out to us via our GitHub profiles. We're excited to see how you'll help SimpleIDE grow!
+   Use Git to clone the SimpleIDE source code to your local machine.
 
-## 🌠 **Happy Coding!** 
-Embark on your programming adventures with SimpleIDE and experience coding like never before. 
+   ```bash
+   git clone https://github.com/MiniProject-JECC-CSE-S6-4/code-compiler-app.git
+   ```
+
+   ![Clone Repository](https://img.shields.io/badge/Git-Clone-blue?style=for-the-badge&logo=git)
+
+   
+
+2. **Navigate to the project directory**
+
+   Change to the project directory on your local machine.
+
+   ```bash
+   cd code-compiler-app
+   ```
+
+   ![CD Command](https://img.shields.io/badge/CD-Navigate-orange?style=for-the-badge&logo=terminal)
+
+3. **Install Dependencies**
+
+   Install all the necessary dependencies using npm.
+
+   ```bash
+   npm install
+   ```
+
+   ![NPM Install](https://img.shields.io/badge/npm-Install-CC3534?style=for-the-badge&logo=npm)
+
+4. **Start the Development Server**
+
+   Launch the development server and open Web Code Compiler in your browser.
+
+   ```bash
+   npm start
+   ```
+
+   ![NPM Start](https://img.shields.io/badge/npm-Start-007ACC?style=for-the-badge&logo=npm)
+
+### 🌐 Open Web Code Compiler
+
+Navigate to `http://localhost:3000/` in your web browser to enjoy coding with Web Code Compiler!
+
+![Web Code Compiler Launch](https://img.shields.io/badge/Web%20Code%20Compiler-Launch-007ACC?style=for-the-badge&logo=react)
+
+
+
+
+## 💡 Usage
+
+**Web Code Compiler** is crafted to enhance your productivity with its straightforward UI:
+
+1. **Choose a Language**: Start by selecting your programming language from the dropdown menu.
+2. **Code Away**: Type your code in the editor. Enjoy features like syntax highlighting and live error detection.
+3. **Run & Debug**: Execute your code with the run button and debug effortlessly with real-time outputs and comprehensive logs.
+4. **Manage Files**: Import your files with the click of a button or export your code effortlessly.
+
+## 🛠 Built With
+
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+- [Monaco Editor](https://microsoft.github.io/monaco-editor/) - The code editor that powers VS Code.
+- [React Router](https://reactrouter.com/) - For seamless navigation.
+- [Axios](https://axios-http.com/) - For promises based HTTP client.
+- [PrismJS](https://prismjs.com/) - For syntax highlighting.
+- [AOS](https://michalsnik.github.io/aos/) - For scroll animations.
+
+
+## ✒️ Authors
+
+- **Arun K Nair** - *Development* - [Arun](https://github.com/AKN414-IND)
+- **Andrea Sunny** - *Documentation* - [Andrea](https://github.com/AndreaSunny)
+- **Hridhya UR** - *UI Design* - [Hridya](https://github.com/Hridhyaa)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## 🎉 Acknowledgments
+
+- Inspiration from various open-source projects that focus on making coding more accessible.
+- Friends and colleagues who provided feedback and guidance.

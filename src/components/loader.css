@@ -1,0 +1,57 @@
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #282c34; /* Maintaining a dark background */
+}
+
+.loader-content {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 50px; /* Increased from 16px to 20px */
+  color: #7775D9;
+  text-align: left;
+  padding: 30px; /* Increased padding for better framing */
+  border-radius: 10px; /* Slightly larger radius for a softer look */
+  background-color: #21252b; /* Dark background for contrast */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Adding more pronounced shadow */
+  width: auto;
+  max-width: 80%; /* Ensuring it doesn't get too wide on larger screens */
+}
+
+.title {
+  font-size: 37px; /* Increased title font size */
+  color: #9CDCFE; /* Light blue color for the title */
+  margin-top: 0;
+  margin-bottom: 15px; /* More space around titles */
+}
+
+.code-line {
+  opacity: 0;
+  margin-bottom: 10px; /* Increased spacing between lines */
+  animation: fadeIn 2.5s forwards; /* Slower animation for more dramatic effect */
+  position: relative; /* Ensure positioning context is clear for pseudo-elements */
+}
+
+.text {
+  display: inline-block; /* Ensuring text alignment and animation are smooth */
+}
+
+.checkmark {
+  font-size: 22px; /* Larger checkmark */
+  color: #98c379; /* Green for visibility */
+  opacity: 0;
+  position: absolute;
+  right: -30px; /* Positioning relative to parent container */
+  animation: fadeInCheckmark 1s 2s forwards; /* Controlled animation for checkmark appearance */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInCheckmark {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}
